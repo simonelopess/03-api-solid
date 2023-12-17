@@ -37,3 +37,43 @@ Gympass style app
 ### Libs usadas
 
 - tsup -> fazer build para produção
+
+`npx i prisma -D` -> trabalhar com prisma em ambiente de desenvolvimento
+`npx prisma generate` -> cria de forma automatica a tipagem do schema
+`npm i @prisma/client ` -> dependencia para trabalhar em producao
+
+
+### Configuração do docker
+
+`docker run --name api-solid-pg bitnami/postgresql:latest`
+
+Criando a configuração com variáveis de ambiente
+
+
+`docker run --name api-solid-pg -e POSTGRESQL_USERNAME=docker -e POSTGRESQL_PASSWORD=docker -e POSTGRESQL_DATABASE=apisolid -p 5432:5432 bitnami/postgresql:latest`
+
+`docker ps -a` -> list containers
+
+`docker start [namedocontainer]` -> inicia
+
+`docker stop [namedocontainer]` -> para
+
+`docker rm [namedocontainer]` -> remove 
+
+`docker logs [nomedocontainer]` -> logs
+
+`docker logs -f [nomedocontainer]` -> watch logs
+
+### Conexão prisma com BD
+
+- No env modificar o nome, senha e user da configuração
+Ex: DATABASE_URL="postgresql://teste:teste@localhost:5432/teste?schema=public"
+
+`npx prisma migrate dev` -> Cria a entity no banco de dados no docker criando uma migration
+`npx prisma studio` -> visualiza as tabelas criadas
+
+### Docker Compose 
+
+```docker compose up -d``` -> starta
+```docker compose stop``` -> para
+```docker compose down ``` -> deleta
